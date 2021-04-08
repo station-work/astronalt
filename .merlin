@@ -1,0 +1,16 @@
+####{BSB GENERATED: NO EDIT
+B lib/bs
+FLG -open Astronaut
+FLG -ppx '/home/enieber/projects/station-work/astronaut/node_modules/bs-platform/linux/bsc.exe -as-ppx -bs-jsx 3'
+S /home/enieber/projects/station-work/astronaut/node_modules/bs-platform/lib/ocaml
+B /home/enieber/projects/station-work/astronaut/node_modules/bs-platform/lib/ocaml
+FLG -w +a-4-9-20-40-41-42-50-61-102
+S /home/enieber/projects/station-work/astronaut/node_modules/reason-nextjs/lib/ocaml
+B /home/enieber/projects/station-work/astronaut/node_modules/reason-nextjs/lib/ocaml
+S /home/enieber/projects/station-work/astronaut/node_modules/reason-react/lib/ocaml
+B /home/enieber/projects/station-work/astronaut/node_modules/reason-react/lib/ocaml
+S /home/enieber/projects/station-work/astronaut/node_modules/@jsiebern/bs-material-ui/lib/ocaml
+B /home/enieber/projects/station-work/astronaut/node_modules/@jsiebern/bs-material-ui/lib/ocaml
+S pages
+B lib/bs/pages
+####BSB GENERATED: NO EDIT}

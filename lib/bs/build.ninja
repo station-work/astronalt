@@ -1,0 +1,32 @@
+g_pkg_flg = -bs-package-name astronaut -bs-ns Astronaut
+src_root_dir = /home/enieber/projects/station-work/astronaut
+bsc = /home/enieber/projects/station-work/astronaut/node_modules/bs-platform/linux/bsc.exe
+bsdep = /home/enieber/projects/station-work/astronaut/node_modules/bs-platform/linux/bsb_helper.exe
+warnings = 
+bsc_flags = 
+ppx_flags = 
+g_dpkg_incls = 
+g_ns = -bs-ns Astronaut
+bsb_dir_group = 0
+g_lib_incls = -I . -I pages -I /home/enieber/projects/station-work/astronaut/node_modules/reason-nextjs/lib/ocaml -I /home/enieber/projects/station-work/astronaut/node_modules/reason-react/lib/ocaml -I /home/enieber/projects/station-work/astronaut/node_modules/@jsiebern/bs-material-ui/lib/ocaml
+rule build_ast_from_re
+  command = $bsc  $warnings -color always -bs-jsx 3 $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
+  description = [34mBuilding[39m [2m${out}[22m
+build  pages/index.reast : build_ast_from_re $src_root_dir/pages/index.re
+rule build_deps
+  command = $bsdep -hash 8f2c3a3681bf46495feeb033c5e1ab3d $g_ns -g $bsb_dir_group $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  pages/index.d : build_deps pages/index.reast
+rule ml_cmj_cmi
+  command = $bsc $g_pkg_flg -color always $g_lib_incls $warnings $bsc_flags -o $out $in
+  dyndep = $in_e.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  pages/index-Astronaut.cmj |  pages/index-Astronaut.cmi $src_root_dir/pages/index.js : ml_cmj_cmi pages/index.reast ||  pages/index.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output es6:pages
+rule build_package
+  command = $bsc -w -49 -color always -no-alias-deps  $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  Astronaut.cmi : build_package Astronaut.mlmap
