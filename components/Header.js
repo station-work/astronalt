@@ -66,7 +66,7 @@ const Header = () => {
         <LinkStyled href="/">
           <Link>
             <ContainerImage>
-             Astronalt
+             Astronaut
             </ContainerImage>
           </Link>
         </LinkStyled>
